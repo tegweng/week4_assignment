@@ -6,9 +6,6 @@ import numpy as np
 # The linear algebra package for BTCS (for solving the matrix equation)
 import scipy.linalg as la
 
-#the linear algebre package for BTCS (for solving the matrix equation)
-import scipy.linalg as la
-
 def FTCS(phiOld, d, nt):
     "Diffusion of profile in PhiOld using STCS using non-dimensional \
     diffusion coefficient, d"
@@ -21,8 +18,10 @@ def FTCS(phiOld, d, nt):
     
     #FTCS for all time steps
     for it in xrange(int(nt)):
-        
-        #insert code for FTCS at each time step here
+        for i in xrange(int(nx)):
+            phi[i] = phiOld[i] + d * (phiOld[i+1] - 2 * phiOld[i] + phiOld[i-1]) 
+        #at the end of each time step we need to set phiOld to phi
+        phiOld = phi.copy()
     
     return phi
 
