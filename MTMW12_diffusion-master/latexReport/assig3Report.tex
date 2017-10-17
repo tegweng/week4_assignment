@@ -1,0 +1,69 @@
+\documentclass[12pt]{article}
+
+% compile this latex file with "pdflatex assig3Report"
+% Lines staring with % are comments
+% Graphics files are included with the \includegraphics command. 
+% You will need to comment these out to use them.
+
+% additional latex packages to use
+\usepackage[a4paper, left=2.2cm,top=1.5cm, right=2.2cm,bottom=1.5cm,]{geometry}
+\usepackage{times, graphicx, amsmath, mathtools}
+\usepackage{url,multirow,xfrac}
+
+% not so much space around floats
+\renewcommand{\floatpagefraction}{0.95}
+\renewcommand{\textfraction}{0}
+\renewcommand{\topfraction}{1}
+\renewcommand{\bottomfraction}{1}
+
+\begin{document}
+\thispagestyle{empty}
+
+\title{MTMW12, Assignment 1: Diffusion}
+\author{Your stuent ID}
+\maketitle
+
+
+\begin{enumerate}
+
+\item The numerical solution the one-dimensional diffusion equation
+\begin{equation}
+\frac{\partial\phi}{\partial t}=K\frac{\partial^{2}\phi}{\partial x^{2}}
+\end{equation}
+using the forward in time, centred in space (FTCS) and the backward
+in time, centred in space (BTCS) diffusion schemes are shown in figure
+\ref{fig:Q1}. These results use the initial conditions: 
+\[
+\phi_{0}(x)=\begin{cases}
+1 & 0.4<x<0.6\\
+0 & \text{ otherwise}
+\end{cases}
+\]
+for $x\in[0,1]$ and are subject to boundary conditions $\partial\phi(0,t)/\partial x=\partial\phi(1,t)/\partial x=0$
+for all time. The schemes use $n_{x}=41$ points in space and the
+simulation runs for $n_{t}=40$ time-steps, each of length $\Delta t=0.1$s
+using a diffusion number of $K=10^{-3}m^{2}s^{-1}$. The results are
+compared with an analytic solution. The analytic solution assumes
+an infinite domain.
+
+
+\begin{figure}[!tbh]
+% Uncomment these lines to include the figures
+%\includegraphics[width=0.48\linewidth]{../pythonCode/plots/FTCS_BTCS.pdf}
+%\includegraphics[width=0.48\linewidth]{../pythonCode/plots/FTCS_BTCS_Error.pdf}
+
+\caption{Results of FTCS and BTCS in comparison to the analytic solution. Results
+use 41 points in space and the simulation runs for 40 time-steps,
+each of length $\Delta t=0.1$s using a diffusion number of $K=10^{-3}m^{2}s^{-1}$.
+\label{fig:Q1}}
+\end{figure}
+
+
+\item The one-dimensional diffusion equation can be used, for example, to
+represent ...
+These initial conditions could represent ...
+These boundary conditions ...
+
+\end{enumerate}
+\end{document}
+
