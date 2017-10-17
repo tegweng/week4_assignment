@@ -21,10 +21,10 @@ def main():
     #Parameters
     xmin = 0.
     xmax = 1.
-    nx = 21
-    nt = 20
+    nx = 41
+    nt = 40
     dt = 0.1
-    K = 2e-3
+    K = 1e-3
     squareWaveMin = 0.4
     squareWaveMax = 0.6
     
