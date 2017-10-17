@@ -14,11 +14,11 @@ def FTCS(phiOld, d, nt):
     
     #new time-step array for phi
     
-    phi = phiOld.copy()
+    phi = phiOld.copy() 
     
     #FTCS for all time steps
     for it in xrange(int(nt)):
-        for i in xrange(int(nx)):
+        for i in xrange(int(nx-1)):
             phi[i] = phiOld[i] + d * (phiOld[i+1] - 2 * phiOld[i] + phiOld[i-1]) 
         #at the end of each time step we need to set phiOld to phi
         phiOld = phi.copy()

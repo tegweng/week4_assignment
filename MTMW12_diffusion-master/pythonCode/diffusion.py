@@ -52,7 +52,7 @@ def main():
     #diffusion using FTCS and BTCS
     #copy allows you to copy by value, not by reference - original does not change
     phiFTCS = FTCS(phiOld.copy(), d, nt)
-    phiBTCS = BTCS(phiOld.copy(), d, nt)
+    phiBTCS = BTCS(phiOld.copy(), d, nt) 
     
     #calculate and print out error norms
     print("FTCS L2 error norm = ", L2ErrorNorm(phiFTCS, phiAnalytic))
@@ -68,7 +68,7 @@ def main():
     plt.plot(x, phiAnalytic, label = 'Analytic', color = 'black', linestyle = '--', linewidth = 2)
     plt.plot(x,phiFTCS, label = 'FTCS', color = 'blue')
     plt.plot(x, phiBTCS, label = 'BTCS', color = 'red')
-    plt.axhlin(0, linestyle = ':', colour = 'black')
+    plt.axhline(0, linestyle = ':', color = 'black')
     plt.ylim([0,1])
     plt.legend(bbox_to_anchor=(1.1, 1))
     plt.xlabel('$x$')
