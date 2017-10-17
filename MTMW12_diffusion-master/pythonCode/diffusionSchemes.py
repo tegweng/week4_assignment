@@ -50,10 +50,11 @@ def BTCS(phi, d, nt):
     #BTCS for all time steps
     
     for it in xrange(int(nt)):
-        #RHS for zero gradient boundary conditions
+        #RHS for zero gradient boundary conditions - have to keep resetting the \
+        #boundary to be zero each time step
         phi[0] = 0
         phi[-1] = 0
-        
+        #as have to do the following for all time steps it is in the for loop
         phi = la.solve(M, phi)
     
     return phi
