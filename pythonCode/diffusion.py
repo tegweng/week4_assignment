@@ -13,20 +13,12 @@ execfile("diffusionSchemes.py")
 execfile("diagnostics.py")
 execfile("initialConditions.py")
 
-def main():
+def main(xmin = 0., xmax = 1., nx = 41, nt = 40, dt = 0.1, K = 1e-3, squareWaveMin = 0.4, squareWaveMax = 0.6):
     "Diffuse a sqaureWave between squareWaveMin and squareWaveMax on a \
     domain between x-xmin and x = xmax split over nx spatial steps\
     with diffusion coefficient K, time step dt for nt time steps"
     
-    #Parameters
-    xmin = 0.
-    xmax = 1.
-    nx = 41
-    nt = 40
-    dt = 0.1
-    K = 1e-3
-    squareWaveMin = 0.4
-    squareWaveMax = 0.6
+    #Parameters defined as arguments
     
     #derived parameters
     dx = (xmax - xmin) / (nx-1)
@@ -71,7 +63,7 @@ def main():
     plt.plot(x,phiFTCS, label = 'FTCS', color = 'blue')
     plt.plot(x, phiBTCS, label = 'BTCS', color = 'red')
     plt.axhline(0, linestyle = ':', color = 'black')
-    plt.ylim([0,1])
+    plt.ylim([0,0.5])
     plt.legend(bbox_to_anchor=(1.1, 1))
     plt.xlabel('$x$')
     plt.savefig('plots/FTCS_BTCS.pdf')
@@ -79,10 +71,11 @@ def main():
     plt.figure(2)
     plt.plot(x, phiFTCS - phiAnalytic, label = 'FTCS', color = 'blue')
     plt.plot(x, phiBTCS - phiAnalytic, label = 'BTCS', color = 'red')
-    plt.ylim([-0.005,0.005])
+    plt.ylim([-0.5,0.5])
     plt.legend(bbox_to_anchor=(1, 1))
     plt.xlabel('$x$')
     plt.ylabel('Error')
     plt.savefig('plots/FTCS_BTCS_Error.pdf')
     
-main()
+#main()
+#main(nt = 1000)
