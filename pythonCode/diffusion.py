@@ -60,11 +60,13 @@ def main():
     
     #plot the solutions
     
-    font = {'size' : 20}
+    font = {'size' : 15}
     plt.rc('font', **font)
     plt.figure(1)
     plt.clf()
+    #clear figure
     plt.ion()
+    #interactive on
     plt.plot(x, phiAnalytic, label = 'Analytic', color = 'black', linestyle = '--', linewidth = 2)
     plt.plot(x,phiFTCS, label = 'FTCS', color = 'blue')
     plt.plot(x, phiBTCS, label = 'BTCS', color = 'red')
@@ -73,5 +75,14 @@ def main():
     plt.legend(bbox_to_anchor=(1.1, 1))
     plt.xlabel('$x$')
     plt.savefig('plots/FTCS_BTCS.pdf')
+    
+    plt.figure(2)
+    plt.plot(x, phiFTCS - phiAnalytic, label = 'FTCS', color = 'blue')
+    plt.plot(x, phiBTCS - phiAnalytic, label = 'BTCS', color = 'red')
+    plt.ylim([-0.005,0.005])
+    plt.legend(bbox_to_anchor=(1, 1))
+    plt.xlabel('$x$')
+    plt.ylabel('Error')
+    plt.savefig('plots/FTCS_BTCS_Error.pdf')
     
 main()

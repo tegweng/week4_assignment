@@ -19,7 +19,10 @@ def FTCS(phiOld, d, nt):
     #FTCS for all time steps
     for it in xrange(int(nt)):
         for i in xrange(int(nx-1)):
-            phi[i] = phiOld[i] + d * (phiOld[i+1] - 2 * phiOld[i] + phiOld[i-1]) 
+            phi[i] = phiOld[i] + d * (phiOld[i+1] - 2 * phiOld[i] + phiOld[i-1])
+            #Boundary conditions for xmin and xmax
+            phi[0]=phi[1]
+            phi[-1]=phi[-2] #wraps around to back
         #at the end of each time step we need to set phiOld to phi
         phiOld = phi.copy()
     
