@@ -71,7 +71,7 @@ def main(xmin = 0., xmax = 1., nx = 41, nt = 40, dt = 0.1, K = 1e-3, squareWaveM
     plt.figure(2)
     plt.plot(x, phiFTCS - phiAnalytic, label = 'FTCS', color = 'blue')
     plt.plot(x, phiBTCS - phiAnalytic, label = 'BTCS', color = 'red')
-    plt.ylim([-1,1])
+    plt.ylim([-0.005,0.005])
     plt.legend(bbox_to_anchor=(1, 1))
     plt.xlabel('$x$')
     plt.ylabel('Error')
@@ -86,4 +86,4 @@ def main(xmin = 0., xmax = 1., nx = 41, nt = 40, dt = 0.1, K = 1e-3, squareWaveM
     plt.xlabel('$x$')
     plt.savefig('plots/FTCS.pdf')
     
-main()
+main(K=0.0025)
