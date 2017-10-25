@@ -86,4 +86,4 @@ def main(xmin = 0., xmax = 1., nx = 41, nt = 40, dt = 0.1, K = 1e-3, squareWaveM
     plt.xlabel('$x$')
     plt.savefig('plots/FTCS.pdf')
     
-#main(K=0.0025)
+#main(dt=0.2)
