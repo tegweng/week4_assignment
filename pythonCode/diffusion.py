@@ -5,7 +5,9 @@
 
 from __future__ import absolute_import, division, print_function
 
+import math
 import matplotlib.pyplot as plt
+import numpy as np
 
 # read in all the linear advection schemes, initial conditions and other
 # code associated with this application
@@ -86,15 +88,24 @@ def main(xmin = 0., xmax = 1., nx = 41, nt = 40, dt = 0.1, K = 1e-3, squareWaveM
     plt.xlabel('$x$')
     plt.savefig('plots/FTCS.pdf')
     
-#main(dt=0.2)
 
-dxs=[0.01,0.025,0.05,0.11]
-l2f=[5.9e-4,0.004,0.015,0.013]
-l2b=[6.8e-4, 0.004,0.0149,0.12]
+dxs=[0.01,0.025,0.04,0.05,0.076,0.11, 0.17]
+l2f=[5.9e-4,0.004, 0.0093,0.015,0.027,0.013,0.024]
+l2b=[6.8e-4, 0.004,0.0099,0.0149,0.041,0.12,0.16]
+
+gradf = np.zeros(len(dxs)-1)
+for i in xrange(0,len(gradf)):
+    gradf[i]=(math.log(l2f[i+1])-math.log(l2f[i]))/(math.log(dxs[i+1])-math.log(dxs[i]))
+gradb = np.zeros(len(dxs)-1)
+for i in xrange(0,len(gradb)):
+    gradb[i]=(math.log(l2b[i+1])-math.log(l2b[i]))/(math.log(dxs[i+1])-math.log(dxs[i]))
+print(gradf)
+print(gradb)
+
 
 plt.figure(4)
-plt.plot(dxs,l2f, label = 'FTCS', color = 'blue')
-plt.plot(dxs,l2b, label = 'BTCS', color = 'red')
+plt.loglog(dxs,l2f, label = 'FTCS', color = 'blue')
+plt.loglog(dxs,l2b, label = 'BTCS', color = 'red')
 plt.legend(bbox_to_anchor=(1, 1))
 plt.xlabel('$\Delta x$')
 plt.ylabel('l2 Error')
