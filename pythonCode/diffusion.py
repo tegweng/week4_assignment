@@ -87,3 +87,16 @@ def main(xmin = 0., xmax = 1., nx = 41, nt = 40, dt = 0.1, K = 1e-3, squareWaveM
     plt.savefig('plots/FTCS.pdf')
     
 #main(dt=0.2)
+
+dxs=[0.01,0.025,0.05,0.11]
+l2f=[5.9e-4,0.004,0.015,0.013]
+l2b=[6.8e-4, 0.004,0.0149,0.12]
+
+plt.figure(4)
+plt.plot(dxs,l2f, label = 'FTCS', color = 'blue')
+plt.plot(dxs,l2b, label = 'BTCS', color = 'red')
+plt.legend(bbox_to_anchor=(1, 1))
+plt.xlabel('$\Delta x$')
+plt.ylabel('l2 Error')
+plt.savefig('plots/FTCS_BTCS_dx_error.pdf')
+    
