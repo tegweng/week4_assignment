@@ -43,7 +43,7 @@ def BTCS(phi, d, nt):
     if nt<=0:
         raise ValueError('Argument nt to BTCS must be positive and non zero.')     
     if not(isinstance(phi,np.ndarray)):
-        raise TypeError('Argument phi to FTCS must be a numpy array')
+        raise TypeError('Argument phi to BTCS must be a numpy array')
     
     nx = len(phi)
     
@@ -74,7 +74,6 @@ def BTCS(phi, d, nt):
         
     return phi
     
-trial = np.zeros(6)
 try:
     FTCS(np.zeros(6), -1,4)
 except ValueError:
@@ -83,7 +82,7 @@ else:
     print('Error in FTCS, an error should be raised if d<=0')
     
 try:
-    FTCS(trial, 1, 0)
+    FTCS(np.zeros(6), 1, 0)
 except ValueError:
     pass
 else:
@@ -97,14 +96,14 @@ else:
     print('Error in FTCS, an error should be raised if phiOld is not a numpy array')
 
 try:
-    BTCS(trial, -1,4)
+    BTCS(np.zeros(6), -1,4)
 except ValueError:
     pass
 else:
     print('Error in BTCS, an error should be raised if d<=0')
     
 try:
-    BTCS(trial, 1, 0)
+    BTCS(np.zeros(6), 1, 0)
 except ValueError:
     pass
 else:

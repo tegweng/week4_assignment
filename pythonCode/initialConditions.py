@@ -24,3 +24,16 @@ def squareWave(x,alpha,beta):
 
     return phi
 
+def sample(x, alpha, beta):
+    phi = np.zeros_like(x)
+    
+    dx= x[1]-x[0]
+    
+    for j in xrange(1, len(x)-1):
+        if j < (alpha / dx) or j > (beta / dx):
+            phi[j] = 0
+        if (alpha / dx) <= j <= (beta/dx):
+            phi[j] = 1
+    return phi
+    
+
