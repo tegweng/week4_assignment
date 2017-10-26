@@ -14,8 +14,8 @@ def FTCS(phiOld, d, nt):
         raise ValueError('Argument d to FTCS must be positive and non zero.')
     if nt<=0:
         raise ValueError('Argument nt to FTCS must be positive and non zero.')     
-    if not(isinstance(phiOld,list)):
-        raise TypeError('Argument phiOld to FTCS must be an array')
+    if not(isinstance(phiOld,np.ndarray)):
+        raise TypeError('Argument phiOld to FTCS must be a numpy array')
     
     nx = len(phiOld)
     
@@ -42,8 +42,8 @@ def BTCS(phi, d, nt):
         raise ValueError('Argument d to BTCS must be positive and non zero.')
     if nt<=0:
         raise ValueError('Argument nt to BTCS must be positive and non zero.')     
-    if not(isinstance(phi,list)):
-        raise TypeError('Argument phi to FTCS must be an array')
+    if not(isinstance(phi,np.ndarray)):
+        raise TypeError('Argument phi to FTCS must be a numpy array')
     
     nx = len(phi)
     
@@ -74,15 +74,16 @@ def BTCS(phi, d, nt):
         
     return phi
     
+trial = np.zeros(6)
 try:
-    FTCS([0,1,2], -1,4)
+    FTCS(np.zeros(6), -1,4)
 except ValueError:
     pass
 else:
     print('Error in FTCS, an error should be raised if d<=0')
     
 try:
-    FTCS([0,1,2], 1, 0)
+    FTCS(trial, 1, 0)
 except ValueError:
     pass
 else:
@@ -93,25 +94,25 @@ try:
 except TypeError:
     pass
 else:
-    print('Error in FTCS, an error should be raised if phiOld is not an array')
+    print('Error in FTCS, an error should be raised if phiOld is not a numpy array')
 
 try:
-    BTCS([0,1,2], -1,4)
+    BTCS(trial, -1,4)
 except ValueError:
     pass
 else:
     print('Error in BTCS, an error should be raised if d<=0')
     
 try:
-    BTCS([0,1,2], 1, 0)
+    BTCS(trial, 1, 0)
 except ValueError:
     pass
 else:
     print('Error in BTCS, an error should be raised if nt<=0')
 
 try:
-    FTCS(0,1,4)
+    BTCS([0,1],1,4)
 except TypeError:
     pass
 else:
-    print('Error in FTCS, an error should be raised if phiOld is not an array')
+    print('Error in BTCS, an error should be raised if phiOld is not a numpy array')
