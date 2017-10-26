@@ -10,6 +10,13 @@ def FTCS(phiOld, d, nt):
     "Diffusion of profile in PhiOld using STCS using non-dimensional \
     diffusion coefficient, d"
     
+    if d<=0:
+        raise ValueError('Argument d to FTCS must be positive and non zero.')
+    if nt<=0:
+        raise ValueError('Argument nt to FTCS must be positive and non zero.')     
+    if not(isinstance(phiOld,list)):
+        raise TypeError('Argument phiOld to FTCS must be an array')
+    
     nx = len(phiOld)
     
     #new time-step array for phi
@@ -19,7 +26,7 @@ def FTCS(phiOld, d, nt):
     #FTCS for all time steps
     for it in xrange(int(nt)):
         for i in xrange(0,int(nx-1)):
-            phi[i] = phiOld[i] + d * (phiOld[i+1] - 2 * phiOld[i] + phiOld[i-1])
+            phi[i] = phiOld[i] + float(d) * (phiOld[i+1] - 2 * phiOld[i] + phiOld[i-1])
             #Boundary conditions for xmin and xmax
             phi[0]=phi[1]
             phi[-1]=phi[-2] #wraps around to back    
@@ -31,6 +38,12 @@ def FTCS(phiOld, d, nt):
 def BTCS(phi, d, nt):
     "Diffusion of profile in phi using BTCS using non dimensional \
     diffusion coefficient, d, assuming fixed value boundary conditions"
+    if d<=0:
+        raise ValueError('Argument d to BTCS must be positive and non zero.')
+    if nt<=0:
+        raise ValueError('Argument nt to BTCS must be positive and non zero.')     
+    if not(isinstance(phi,list)):
+        raise TypeError('Argument phi to FTCS must be an array')
     
     nx = len(phi)
     
@@ -60,3 +73,45 @@ def BTCS(phi, d, nt):
         phi = la.solve(M, phi.copy())
         
     return phi
+    
+try:
+    FTCS([0,1,2], -1,4)
+except ValueError:
+    pass
+else:
+    print('Error in FTCS, an error should be raised if d<=0')
+    
+try:
+    FTCS([0,1,2], 1, 0)
+except ValueError:
+    pass
+else:
+    print('Error in FTCS, an error should be raised if nt<=0')
+
+try:
+    FTCS(0,1,4)
+except TypeError:
+    pass
+else:
+    print('Error in FTCS, an error should be raised if phiOld is not an array')
+
+try:
+    BTCS([0,1,2], -1,4)
+except ValueError:
+    pass
+else:
+    print('Error in BTCS, an error should be raised if d<=0')
+    
+try:
+    BTCS([0,1,2], 1, 0)
+except ValueError:
+    pass
+else:
+    print('Error in BTCS, an error should be raised if nt<=0')
+
+try:
+    FTCS(0,1,4)
+except TypeError:
+    pass
+else:
+    print('Error in FTCS, an error should be raised if phiOld is not an array')
