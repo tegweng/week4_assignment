@@ -25,15 +25,25 @@ def squareWave(x,alpha,beta):
     return phi
 
 def sample(x, alpha, beta):
+    
+    if float(alpha) >= float(beta) :
+        raise ValueError('Error: squarewaveMin must be smaller than squarewaveMax')
+    
     phi = np.zeros_like(x)
     
     dx= x[1]-x[0]
     
     for j in xrange(1, len(x)-1):
-        if j < (alpha / dx) or j > (beta / dx):
+        if j < (float(alpha) / float(dx)) or j > (float(beta) / float(dx)):
             phi[j] = 0
-        if (alpha / dx) <= j <= (beta/dx):
+        else: 
             phi[j] = 1
     return phi
     
-
+try:
+    sample([0,2], 3,2)
+except ValueError:
+    pass
+else:
+    print('Error in sample function, Min must be smaller than Max')
+    
