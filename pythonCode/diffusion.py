@@ -38,8 +38,8 @@ def main(xmin = 0., xmax = 1., nx = 41, nt = 40, dt = 0.1, K = 1e-3, squareWaveM
     print( "x = ", x)
     
     #Initial conditions
-    phiOld = squareWave(x, squareWaveMin, squareWaveMax)
-    
+    #phiOld = squareWave(x, squareWaveMin, squareWaveMax)
+    phiOld = sample(x, squareWaveMin, squareWaveMax)
     #analytic solution (of squarewave profile in an infinite domain)
     phiAnalytic = analyticErf(x, K * dt* nt, squareWaveMin, squareWaveMax)
     
@@ -73,7 +73,7 @@ def main(xmin = 0., xmax = 1., nx = 41, nt = 40, dt = 0.1, K = 1e-3, squareWaveM
     plt.figure(2)
     plt.plot(x, phiFTCS - phiAnalytic, label = 'FTCS', color = 'blue')
     plt.plot(x, phiBTCS - phiAnalytic, label = 'BTCS', color = 'red')
-    plt.ylim([-0.005,0.005])
+    plt.ylim([-0.1,0.1])
     plt.legend(bbox_to_anchor=(1, 1))
     plt.xlabel('$x$')
     plt.ylabel('Error')
@@ -87,7 +87,8 @@ def main(xmin = 0., xmax = 1., nx = 41, nt = 40, dt = 0.1, K = 1e-3, squareWaveM
     plt.legend(bbox_to_anchor=(1.1, 1))
     plt.xlabel('$x$')
     plt.savefig('plots/FTCS.pdf')
-    
+
+main()
 
 dxs=[0.01,0.025,0.04,0.05,0.076]
 l2f=[5.9e-4,0.004, 0.0093,0.015,0.027]
