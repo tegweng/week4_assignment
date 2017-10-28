@@ -88,11 +88,11 @@ def main(xmin = 0., xmax = 1., nx = 41, nt = 40, dt = 0.1, K = 1e-3, squareWaveM
     plt.xlabel('$x$')
     plt.savefig('plots/FTCS.pdf')
 
-main()
+#main()
 
-dxs=[0.01,0.025,0.04,0.05,0.076]
-l2f=[5.9e-4,0.004, 0.0093,0.015,0.027]
-l2b=[6.8e-4, 0.004,0.0099,0.0149,0.041]
+dxs=[0.001, 0.005, 0.01,0.025,0.04,0.05,0.076]
+l2f=[6.1e-6,1.2e-4,5.9e-4,0.004, 0.0093,0.015,0.027]
+l2b=[7.1e-6,2.8e-4,6.8e-4, 0.004,0.0099,0.0149,0.041]
 
 gradf = np.zeros(len(dxs)-1)
 for i in xrange(0,len(gradf)):
@@ -107,7 +107,7 @@ print(gradb)
 plt.figure(4)
 plt.loglog(dxs,l2f, label = 'FTCS', color = 'blue')
 plt.loglog(dxs,l2b, label = 'BTCS', color = 'red')
-plt.legend(bbox_to_anchor=(1, 1))
+plt.legend(bbox_to_anchor=(1, 0.5))
 plt.xlabel('$\Delta x$')
 plt.ylabel('l2 Error')
 plt.savefig('plots/FTCS_BTCS_dx_error.pdf')

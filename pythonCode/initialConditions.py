@@ -25,7 +25,8 @@ def squareWave(x,alpha,beta):
     return phi
 
 def sample(x, alpha, beta):
-    
+    #function which samples the function rather than checking the integration bounds
+    #likely to over or under estimate the area under the curve 
     if float(alpha) >= float(beta) :
         raise ValueError('Error: squarewaveMin must be smaller than squarewaveMax')
     
