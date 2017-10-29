@@ -109,6 +109,5 @@ plt.loglog(dxs,l2f, label = 'FTCS', color = 'blue')
 plt.loglog(dxs,l2b, label = 'BTCS', color = 'red')
 plt.legend(bbox_to_anchor=(1, 0.5))
 plt.xlabel('$\Delta x$')
-plt.ylabel('l2 Error')
 plt.savefig('plots/FTCS_BTCS_dx_error.pdf')
     
