@@ -96,10 +96,10 @@ l2b=[7.1e-6,2.8e-4,6.8e-4, 0.004,0.0099,0.0149,0.041]
 
 gradf = np.zeros(len(dxs)-1)
 for i in xrange(0,len(gradf)):
-    gradf[i]=(math.log(l2f[i+1])-math.log(l2f[i]))/(math.log(dxs[i+1])-math.log(dxs[i]))
+    gradf[i]=(math.log(abs(l2f[i+1]))-math.log(abs(l2f[i])))/(math.log(abs(dxs[i+1]))-math.log(abs(dxs[i])))
 gradb = np.zeros(len(dxs)-1)
 for i in xrange(0,len(gradb)):
-    gradb[i]=(math.log(l2b[i+1])-math.log(l2b[i]))/(math.log(dxs[i+1])-math.log(dxs[i]))
+    gradb[i]=(math.log(abs(l2b[i+1]))-math.log(abs(l2b[i])))/(math.log(abs(dxs[i+1]))-math.log(abs(dxs[i])))
 print(gradf)
 print(gradb)
 
