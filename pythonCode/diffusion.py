@@ -38,8 +38,8 @@ def main(xmin = 0., xmax = 1., nx = 41, nt = 40, dt = 0.1, K = 1e-3, squareWaveM
     print( "x = ", x)
     
     #Initial conditions
-    #phiOld = squareWave(x, squareWaveMin, squareWaveMax)
-    phiOld = sample(x, squareWaveMin, squareWaveMax)
+    phiOld = squareWave(x, squareWaveMin, squareWaveMax)
+    #phiOld = sample(x, squareWaveMin, squareWaveMax)
     #analytic solution (of squarewave profile in an infinite domain)
     phiAnalytic = analyticErf(x, K * dt* nt, squareWaveMin, squareWaveMax)
     
